@@ -1,0 +1,27 @@
+Name:
+ship3
+Width:
+100
+Height:
+500
+Max Health:
+1000
+Speed:
+0.05
+Turn Speed:
+0.03
+
+Num Turrets:
+2
+Type:
+turret3
+X:
+0
+Y:
+120
+Type:
+turret3
+X:
+0
+Y:
+-120

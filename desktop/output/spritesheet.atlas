@@ -1,0 +1,41 @@
+
+spritesheet.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+flag
+  rotate: false
+  xy: 2, 2
+  size: 311, 26
+  orig: 311, 26
+  offset: 0, 0
+  index: -1
+mast1
+  rotate: false
+  xy: 2, 30
+  size: 540, 960
+  orig: 540, 960
+  offset: 0, 0
+  index: -1
+projectile
+  rotate: false
+  xy: 544, 79
+  size: 77, 77
+  orig: 77, 77
+  offset: 0, 0
+  index: -1
+ship1
+  rotate: false
+  xy: 544, 158
+  size: 242, 832
+  orig: 242, 832
+  offset: 0, 0
+  index: -1
+splash
+  rotate: false
+  xy: 788, 761
+  size: 229, 229
+  orig: 229, 229
+  offset: 0, 0
+  index: -1

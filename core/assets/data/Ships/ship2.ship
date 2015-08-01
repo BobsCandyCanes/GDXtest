@@ -1,0 +1,21 @@
+Name:
+ship2
+Width:
+40
+Height:
+140
+Max Health:
+500
+Speed:
+0.10
+Turn Speed:
+0.04
+
+Num Turrets:
+1
+Type:
+turret2
+X:
+0
+Y:
+12

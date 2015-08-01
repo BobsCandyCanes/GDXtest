@@ -1,0 +1,54 @@
+
+spritesheet.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ship3
+  rotate: false
+  xy: 1, 288
+  size: 198, 734
+  orig: 198, 734
+  offset: 0, 0
+  index: -1
+splash
+  rotate: false
+  xy: 201, 793
+  size: 229, 229
+  orig: 229, 229
+  offset: 0, 0
+  index: -1
+turret2
+  rotate: false
+  xy: 201, 552
+  size: 210, 239
+  orig: 210, 239
+  offset: 0, 0
+  index: -1
+ship2
+  rotate: false
+  xy: 1, 1
+  size: 67, 285
+  orig: 67, 285
+  offset: 0, 0
+  index: -1
+turret1
+  rotate: false
+  xy: 201, 385
+  size: 104, 165
+  orig: 104, 165
+  offset: 0, 0
+  index: -1
+ship1
+  rotate: false
+  xy: 432, 816
+  size: 61, 206
+  orig: 61, 206
+  offset: 0, 0
+  index: -1
+projectile
+  rotate: false
+  xy: 70, 195
+  size: 56, 91
+  orig: 56, 91
+  offset: 0, 0
+  index: -1
