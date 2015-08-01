@@ -10,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -53,7 +54,7 @@ public class GDXtest extends ApplicationAdapter
 
 		Gdx.input.setInputProcessor(stage);
 
-		gui = new GUI();
+		gui = new GUI(stage.getBatch());
 		
 		background = new Background();
 
@@ -101,7 +102,6 @@ public class GDXtest extends ApplicationAdapter
 
 		stage.getCamera().position.set(player.getX() + player.getOriginX(), player.getY() + player.getOriginY(), 0);
 		stage.getCamera().update();
-		gui.getCamera().update();
 
 		pollInput();
 
@@ -112,9 +112,10 @@ public class GDXtest extends ApplicationAdapter
 
 		background.draw();
 		stage.draw();
-		gui.draw();
-
+		
 		rayHandler.updateAndRender();
+		
+		gui.draw();
 	}
 
 	public void pollInput()

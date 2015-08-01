@@ -1,6 +1,7 @@
 package com.GDX.test;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,9 +16,9 @@ public class GUI extends Stage
 	TextButton button2;
 	TextButton button3;
 	
-	public GUI()
-	{
-		super(new ScreenViewport());
+	public GUI(Batch batch)
+	{	
+		super(new ScreenViewport(), batch);
 		
 		skin = new Skin(Gdx.files.internal("data/GUI_Assets/uiskin.json"));
 		
