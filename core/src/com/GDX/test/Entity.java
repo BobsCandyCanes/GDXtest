@@ -83,24 +83,6 @@ public abstract class Entity extends Group
 		
 		boundingPolygon.setPosition(getX(), getY());
 	}
-	
-	public void checkForCollision()
-	{
-		/*
-		for(Actor a : GDXtest.stage.getActors()) //getParent().getParent().getChildren())
-		{	
-			if(a != this)
-			{
-				Entity e = (Entity)a;
-
-				if(Intersector.overlapConvexPolygons(e.boundingPolygon, boundingPolygon))
-				{
-					hitEntity(e);
-				}
-			}
-		}
-		*/
-	}
 
 	public void hitEntity(Entity e)
 	{

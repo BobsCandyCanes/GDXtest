@@ -1,0 +1,45 @@
+
+HUD_Assets.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+default
+  rotate: false
+  xy: 1, 1
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+uiskin
+  rotate: false
+  xy: 259, 1
+  size: 256, 128
+  orig: 256, 128
+  offset: 0, 0
+  index: -1
+
+HUD_Assets2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+HUD_Assets/healthbarBackground
+  rotate: false
+  xy: 1, 1
+  size: 120, 960
+  orig: 120, 960
+  offset: 0, 0
+  index: -1
+HUD_Assets/healthbarInterior
+  rotate: false
+  xy: 123, 1
+  size: 120, 960
+  orig: 120, 960
+  offset: 0, 0
+  index: -1
+HUD_Assets/healthbar
+  rotate: false
+  xy: 245, 115
+  size: 58, 846
+  orig: 58, 846
+  offset: 0, 0
+  index: -1

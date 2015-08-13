@@ -1,0 +1,26 @@
+
+HUD_Assets.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+HUD
+  rotate: false
+  xy: 1, 325
+  size: 85, 604
+  orig: 85, 604
+  offset: 0, 0
+  index: -1
+healthbar
+  rotate: false
+  xy: 88, 466
+  size: 22, 463
+  orig: 22, 463
+  offset: 0, 0
+  index: -1
+healthbarBackground
+  rotate: false
+  xy: 88, 1
+  size: 22, 463
+  orig: 22, 463
+  offset: 0, 0
+  index: -1

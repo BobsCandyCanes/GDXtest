@@ -3,6 +3,7 @@ package com.GDX.test;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
@@ -34,6 +35,8 @@ public class Turret extends Entity
 	int timeSinceLastShot;
 
 	BarrelExit[] barrelExits;
+	
+	Sound sound;
 
 	public Turret(Ship s, int x, int y, String name)
 	{
@@ -56,19 +59,23 @@ public class Turret extends Entity
 		String[] input = inputString.split("\\r?\\n");
 		
 		setTexture(input[1]);
-		setWidth(Integer.parseInt(input[3]));
-		setHeight(Integer.parseInt(input[5]));
-		setOriginX(Integer.parseInt(input[7]));
-		setOriginY(Integer.parseInt(input[9]));
-		fireDelay = Integer.parseInt(input[11]);
 		
-		int numBarrelExits = Integer.parseInt(input[14]);
+		String soundPath = "data/SoundEffects/" + input[3] + ".wav";
+		sound = Gdx.audio.newSound(Gdx.files.internal(soundPath));
+		
+		setWidth(Integer.parseInt(input[5]));
+		setHeight(Integer.parseInt(input[7]));
+		setOriginX(Integer.parseInt(input[9]));
+		setOriginY(Integer.parseInt(input[11]));
+		fireDelay = Integer.parseInt(input[13]);
+		
+		int numBarrelExits = Integer.parseInt(input[16]);
 		
 		barrelExits = new BarrelExit[numBarrelExits];
 		
 		
-		int numTurrets = Integer.parseInt(input[14]);
-		int lineNumber = 14;
+		int numTurrets = Integer.parseInt(input[16]);
+		int lineNumber = 16;
 		
 		int exitX;
 		int exitY;
@@ -91,7 +98,7 @@ public class Turret extends Entity
 
 		updatePosition();
 		
-		if(getParent().equals(GDXtest.player))
+		if(getParent().equals(GDXtest.getPlayer()))
 		{
 			pointTowardsMouse();
 		}
@@ -156,6 +163,8 @@ public class Turret extends Entity
 	{
 		if(timeSinceLastShot > fireDelay)
 		{
+			sound.play(0.1f);
+			
 			for(BarrelExit barrelExit : barrelExits)
 			{
 				float xPos = getParent().getX() + getX() + getOriginX() + barrelExit.transformedX;

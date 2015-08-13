@@ -10,7 +10,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -30,7 +29,7 @@ public class GDXtest extends ApplicationAdapter
 
 	static Stage stage;
 
-	static Player player;
+	static int playerNum;
 
 	ArrayList<Entity> entities;
 
@@ -42,7 +41,11 @@ public class GDXtest extends ApplicationAdapter
 	static RayHandler rayHandler;
 
 	GUI gui;
-	
+
+	static Ship ship1;
+	static Ship ship2;
+	static Ship ship3;
+
 	@Override
 	public void create()
 	{
@@ -50,27 +53,26 @@ public class GDXtest extends ApplicationAdapter
 
 		spritesheet = new TextureAtlas(Gdx.files.internal("data/Spritesheets/spritesheet.pack"));
 
-		stage = new Stage(new FitViewport(1200, 700));
-
-		Gdx.input.setInputProcessor(stage);
+		stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
 		gui = new GUI(stage.getBatch());
-		
+
+		Gdx.input.setInputProcessor(gui);
+
 		background = new Background();
 
 		initLighting();
 
-		player = new Player(1200, 1200);
-		stage.addActor(player);
+		ship1 = new Ship(1000, 1000, "ship1");
+		stage.addActor(ship1);
+		playerNum = 1;
 
-		Ship ship2 = new Ship(1000, 1000, "ship1");
+		ship2 = new Ship(1000, 1200, "ship2");
+		ship2.setRotation(60);
 		stage.addActor(ship2);
 
-		Ship ship3 = new Ship(1000, 1200, "ship2");
-		ship3.setRotation(60);
+		ship3 = new Ship(1200, 1200, "ship3");
 		stage.addActor(ship3);
-
-		//stage.addActor(new Ship(200, 200));
 	}
 
 	public void initLighting()
@@ -87,10 +89,13 @@ public class GDXtest extends ApplicationAdapter
 	{
 		stage.dispose();
 		background.dispose();
+		world.dispose();
+		gui.dispose();
 	}
 
 	@Override
-	public void resize(int width, int height) {
+	public void resize(int width, int height) 
+	{
 		stage.getViewport().update(width, height, true);
 	}
 
@@ -100,7 +105,10 @@ public class GDXtest extends ApplicationAdapter
 		Gdx.gl.glClearColor(0.5f, 0.5f, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		stage.getCamera().position.set(player.getX() + player.getOriginX(), player.getY() + player.getOriginY(), 0);
+		if(getPlayer() != null)
+		{
+			stage.getCamera().position.set(getPlayer().getX() + getPlayer().getOriginX(), getPlayer().getY() + getPlayer().getOriginY(), 0);
+		}
 		stage.getCamera().update();
 
 		pollInput();
@@ -112,60 +120,80 @@ public class GDXtest extends ApplicationAdapter
 
 		background.draw();
 		stage.draw();
-		
+
 		rayHandler.updateAndRender();
-		
+
 		gui.draw();
 	}
 
 	public void pollInput()
 	{
-		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)
-				|| Gdx.input.isKeyPressed(Input.Keys.D))
+		Ship player = getPlayer();
+		
+		if(player != null)
 		{
-			if(!player.isColliding)
+			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)
+					|| Gdx.input.isKeyPressed(Input.Keys.D))
 			{
-				float turnSpeed = 0.1f + player.turnSpeed * player.getVelocity();
+				if(!player.isColliding)
+				{
+					float turnSpeed = 0.1f + player.turnSpeed * player.getVelocity();
 
-				player.rotationSpeed += turnSpeed;
+					player.rotationSpeed += turnSpeed;
+				}
 			}
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)
-				|| Gdx.input.isKeyPressed(Input.Keys.A))
-		{
-			if(!player.isColliding)
+			if (Gdx.input.isKeyPressed(Input.Keys.LEFT)
+					|| Gdx.input.isKeyPressed(Input.Keys.A))
 			{
-				float turnSpeed = 0.1f + player.turnSpeed * player.getVelocity();
+				if(!player.isColliding)
+				{
+					float turnSpeed = 0.1f + player.turnSpeed * player.getVelocity();
 
-				player.rotationSpeed += -turnSpeed;
+					player.rotationSpeed += -turnSpeed;
+				}
 			}
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.UP)
-				|| Gdx.input.isKeyPressed(Input.Keys.W))
-		{
-			float xVector = player.speed * (float)Math.sin(Math.toRadians(player.getRotation()));
-			float yVector = player.speed * (float)Math.cos(Math.toRadians(player.getRotation()));
+			if (Gdx.input.isKeyPressed(Input.Keys.UP)
+					|| Gdx.input.isKeyPressed(Input.Keys.W))
+			{
+				float xVector = player.speed * (float)Math.sin(Math.toRadians(player.getRotation()));
+				float yVector = player.speed * (float)Math.cos(Math.toRadians(player.getRotation()));
 
-			player.xVelocity += xVector;
-			player.yVelocity += yVector;
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)
-				|| Gdx.input.isKeyPressed(Input.Keys.S))
-		{
-			float xVector = player.speed * (float)Math.sin(Math.toRadians(player.getRotation()));
-			float yVector = player.speed * (float)Math.cos(Math.toRadians(player.getRotation()));
+				player.xVelocity += xVector;
+				player.yVelocity += yVector;
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.DOWN)
+					|| Gdx.input.isKeyPressed(Input.Keys.S))
+			{
+				float xVector = player.speed * (float)Math.sin(Math.toRadians(player.getRotation()));
+				float yVector = player.speed * (float)Math.cos(Math.toRadians(player.getRotation()));
 
-			player.xVelocity -= xVector;
-			player.yVelocity -= yVector;
-		}
-		if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
-		{
-			player.shoot();
+				player.xVelocity -= xVector;
+				player.yVelocity -= yVector;
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.SPACE))
+			{
+				player.shoot();
+			}
 		}
 	}
 
 	public static TextureRegion getTexture(String name)
 	{
 		return spritesheet.findRegion(name);
+	}
+
+	public static Ship getPlayer()
+	{
+		switch(playerNum)
+		{
+		case 1: 
+			return ship1;
+		case 2:
+			return ship2;
+		case 3:
+			return ship3;
+		default:
+			return null;
+		}
 	}
 }

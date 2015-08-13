@@ -9,12 +9,17 @@ public class DesktopLauncher
 	public static void main (String[] arg) 
 	{
 		System.out.println("Launching");
-		
+		 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		
 		config.title = "Test";
+		//config.width = 1200;
+		//config.height = 700;
+		//config.fullscreen = true;
+		
 		config.width = 1200;
 		config.height = 700;
+		config.resizable = false;
 		
 		new LwjglApplication(new GDXtest(), config);
 	}
