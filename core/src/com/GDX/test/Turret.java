@@ -167,7 +167,9 @@ public class Turret extends Entity
 				float xPos = getParent().getX() + getX() + getOriginX() + barrelExit.transformedX;
 				float yPos = getParent().getY() + getY() + getOriginY() + barrelExit.transformedY;
 				
-				GDXtest.stage.addActor(new Projectile(xPos, yPos, -getRotation(), (Ship)getParent()));
+				Projectile projectile = ProjectilePool.obtain();
+				projectile.init(xPos, yPos, -getRotation(), (Ship)getParent());
+				GDXtest.stage.addActor(projectile);
 			}
 			timeSinceLastShot = 0;
 		}

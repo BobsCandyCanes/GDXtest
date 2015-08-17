@@ -8,11 +8,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Pool.Poolable;
 
-public class Projectile extends Entity
+public class Projectile extends Entity implements Poolable
 {	
 	final static int DFLT_WIDTH = 5;
 	final static int DFLT_HEIGHT = 5;
+
+	boolean alive;
 
 	int speed = 7;
 	int range = 6;
@@ -24,11 +27,21 @@ public class Projectile extends Entity
 
 	PointLight light;
 
-	public Projectile(float x, float y, float angle, Ship sourceShip)
-	{		
-		super(x, y, DFLT_WIDTH, DFLT_HEIGHT);
+	public Projectile()
+	{
+		super(0, 0, DFLT_WIDTH, DFLT_HEIGHT);
 
 		setTexture("projectile");
+
+		initLight();
+
+		alive = false;
+	}
+
+	public void init(float x, float y, float angle, Ship sourceShip)
+	{
+		setX(x);
+		setY(y);
 
 		setRotation(angle);
 
@@ -45,8 +58,27 @@ public class Projectile extends Entity
 		yVelocity = vY;
 
 		calcLifespan();
+		
+		light.setActive(true);
+		
+		alive = true;
+	}
 
-		initLight();
+	public void reset()
+	{
+		this.remove();
+		
+		setX(0);
+		setY(0);
+		setRotation(0);
+		xVelocity = 0;
+		yVelocity = 0;
+		age = 0;
+		lifespan = 0;
+
+		light.setActive(false);
+		
+		alive = false;
 	}
 
 	public void initLight()
@@ -57,21 +89,24 @@ public class Projectile extends Entity
 	@Override
 	public void act(float deltaTime)
 	{
-		age++;
-
-		moveBy(xVelocity, yVelocity);
-
-		setBounds(getX(), getY(), getWidth(), getHeight());
-
-		checkForCollision();
-
-		updateLights();
-
-		if(age > lifespan)
+		if(alive)
 		{
-			GDXtest.stage.addActor(new Splash(getX(), getY()));	
+			age++;
 
-			destroy();
+			moveBy(xVelocity, yVelocity);
+
+			setBounds(getX(), getY(), getWidth(), getHeight());
+
+			checkForCollision();
+
+			updateLights();
+
+			if(age > lifespan)
+			{
+				GDXtest.stage.addActor(new Splash(getX(), getY()));	
+
+				destroy();
+			}
 		}
 	}
 
@@ -124,9 +159,6 @@ public class Projectile extends Entity
 
 	public void destroy()
 	{
-		light.setActive(false);
-		light.remove();
-		light.dispose();
-		this.remove();
-	}
+		ProjectilePool.free(this);
+	}	
 }
