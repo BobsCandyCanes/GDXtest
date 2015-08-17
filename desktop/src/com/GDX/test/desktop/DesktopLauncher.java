@@ -12,12 +12,8 @@ public class DesktopLauncher
 		 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		
-		config.title = "Test";
-		//config.width = 1200;
-		//config.height = 700;
-		//config.fullscreen = true;
-		
-		config.width = 1200;
+		config.title = "Test"; 
+		config.width = 1200; 
 		config.height = 700;
 		config.resizable = false;
 		

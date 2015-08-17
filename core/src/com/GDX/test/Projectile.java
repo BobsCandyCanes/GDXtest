@@ -14,6 +14,7 @@ public class Projectile extends Entity
 	final static int DFLT_WIDTH = 5;
 	final static int DFLT_HEIGHT = 5;
 
+	int speed = 7;
 	int range = 6;
 	int damage = 10;
 	int age;
@@ -32,8 +33,10 @@ public class Projectile extends Entity
 		setRotation(angle);
 
 		// Calculate velocity based on firing angle
-		float vX = 6 * (float)Math.sin(Math.toRadians(getRotation()));
-		float vY = 6 * (float)Math.cos(Math.toRadians(getRotation()));
+		float vX = speed * (float)Math.sin(Math.toRadians(getRotation()));
+		float vY = speed * (float)Math.cos(Math.toRadians(getRotation()));
+
+		this.sourceShip = sourceShip;
 
 		vX += sourceShip.xVelocity;
 		vY += sourceShip.yVelocity;
@@ -60,10 +63,7 @@ public class Projectile extends Entity
 
 		setBounds(getX(), getY(), getWidth(), getHeight());
 
-		if(age >= 5)
-		{
-			checkForCollision();
-		}
+		checkForCollision();
 
 		updateLights();
 
@@ -98,7 +98,8 @@ public class Projectile extends Entity
 					if(Intersector.overlapConvexPolygons(ship.boundingPolygon, this.boundingPolygon))
 					{
 						ship.takeDamage(damage);
-						this.destroy();
+						GDXtest.stage.addActor(new Explosion(getX(), getY()));	
+						destroy();
 					}
 				}
 			}
@@ -123,8 +124,9 @@ public class Projectile extends Entity
 
 	public void destroy()
 	{
+		light.setActive(false);
 		light.remove();
 		light.dispose();
-		super.destroy();
+		this.remove();
 	}
 }

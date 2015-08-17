@@ -10,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -45,6 +46,8 @@ public class GDXtest extends ApplicationAdapter
 	static Ship ship1;
 	static Ship ship2;
 	static Ship ship3;
+	
+	ParticleEffect snowEffect;
 
 	@Override
 	public void create()
@@ -61,6 +64,7 @@ public class GDXtest extends ApplicationAdapter
 
 		background = new Background();
 
+		initSnowEffect();
 		initLighting();
 
 		ship1 = new Ship(1000, 1000, "ship1");
@@ -73,6 +77,14 @@ public class GDXtest extends ApplicationAdapter
 
 		ship3 = new Ship(1200, 1200, "ship3");
 		stage.addActor(ship3);
+	}
+	
+	public void initSnowEffect()
+	{
+		snowEffect = new ParticleEffect();
+	    snowEffect.load(Gdx.files.internal("data/Particles/Snow.party"),Gdx.files.internal(""));
+	    snowEffect.getEmitters().first().setPosition(1200, 1200);
+	    snowEffect.start();
 	}
 
 	public void initLighting()
@@ -115,12 +127,16 @@ public class GDXtest extends ApplicationAdapter
 
 		stage.act(Gdx.graphics.getDeltaTime());
 		gui.act(Gdx.graphics.getDeltaTime());
-
+		snowEffect.update(Gdx.graphics.getDeltaTime());
+		snowEffect.getEmitters().first().durationTimer = 0;
+		
 		entities = new ArrayList<Entity>();
 
-		background.draw();
+		background.draw(); 
 		stage.draw();
-
+		stage.getBatch().begin();
+		snowEffect.draw(stage.getBatch());
+		stage.getBatch().end();
 		rayHandler.updateAndRender();
 
 		gui.draw();

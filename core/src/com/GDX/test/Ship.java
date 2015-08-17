@@ -300,7 +300,7 @@ public class Ship extends Entity
 			{
 				isColliding = true;
 
-				moveBy(-xVelocity * 1.2f, -yVelocity * 1.2f);
+				moveBy(-xVelocity * 1.4f, -yVelocity * 1.4f);
 				rotateBy(-rotationSpeed);
 
 				xVelocity *= 0.05;
@@ -340,7 +340,7 @@ public class Ship extends Entity
 		{
 			GDXtest.playerNum = 0;
 		}
-
+		
 		GDXtest.stage.addActor(new Splash(getX() + getWidth() / 2, getY() + getHeight() / 2, 20, 20));	
 
 		this.remove();

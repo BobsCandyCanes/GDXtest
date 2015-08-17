@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="300" height="300" tilewidth="32" tileheight="32" nextobjectid="298">
- <tileset firstgid="1" name="DefaultTileset" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="300" height="300" tilewidth="32" tileheight="32" nextobjectid="310">
+ <tileset firstgid="1" name="DefaultTileset" tilewidth="365" tileheight="348">
   <tile id="0">
    <image width="32" height="32" source="Tilemap Images/deepwater.png"/>
   </tile>
@@ -22,6 +22,9 @@
   <tile id="6">
    <image width="32" height="32" source="Tilemap Images/stone.png"/>
   </tile>
+  <tile id="7">
+   <image width="365" height="348" source="Tilemap Images/iceberg1.png"/>
+  </tile>
  </tileset>
  <layer name="Tile Layer 1" width="300" height="300">
   <data encoding="base64" compression="zlib">
@@ -30,7 +33,7 @@
  </layer>
  <layer name="Tile Layer 2" width="300" height="300">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20KP6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAlwF+iwAB
+   eJztzjEBAAAMAiDP9U+8GB5CAhIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYce0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAw5wHTAwAJ
   </data>
  </layer>
  <objectgroup name="Collision Layer">
@@ -393,6 +396,42 @@
   </object>
   <object id="265" x="1344" y="6654">
    <polyline points="0,0 -2,130"/>
+  </object>
+  <object id="298" x="1448" y="7586">
+   <polyline points="0,0 46,-75.3333"/>
+  </object>
+  <object id="299" x="1494" y="7510.67">
+   <polyline points="0,0 52.6667,29.3333"/>
+  </object>
+  <object id="300" x="1546.67" y="7540">
+   <polyline points="0,0 78,-30.6667"/>
+  </object>
+  <object id="301" x="1624.67" y="7509.33">
+   <polyline points="0,0 62.6667,8.66667"/>
+  </object>
+  <object id="302" x="1687.33" y="7518">
+   <polyline points="0,0 12,67.3333"/>
+  </object>
+  <object id="303" x="1699.33" y="7585.33">
+   <polyline points="0,0 34,76"/>
+  </object>
+  <object id="304" x="1733.33" y="7661.33">
+   <polyline points="0,0 -48.6667,63.3333"/>
+  </object>
+  <object id="305" x="1684.67" y="7724.67">
+   <polyline points="0,0 -61.3333,12"/>
+  </object>
+  <object id="306" x="1623.33" y="7736.67">
+   <polyline points="0,0 -74,33.3333"/>
+  </object>
+  <object id="307" x="1549.33" y="7770.67">
+   <polyline points="0,0 -94.6667,-34"/>
+  </object>
+  <object id="308" x="1454.67" y="7736.67">
+   <polyline points="0,0 19.3333,-75.3333"/>
+  </object>
+  <object id="309" x="1474" y="7661.33">
+   <polyline points="0,0 -25.3333,-74"/>
   </object>
  </objectgroup>
 </map>

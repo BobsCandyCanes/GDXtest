@@ -47,9 +47,6 @@ public class Turret extends Entity
 		
 		xOffset = x;
 		yOffset = y;
-
-		//barrelExits = new BarrelExit[1];
-		//barrelExits[0] = new BarrelExit(0, 8, this);
 	}
 	
 	public void loadFromFile(String filename)

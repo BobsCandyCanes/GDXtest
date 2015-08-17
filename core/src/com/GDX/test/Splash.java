@@ -1,7 +1,6 @@
 package com.GDX.test;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
 	class Splash extends Entity
@@ -9,8 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 		int age;
 		float splashAlpha = 1;
 		
-		String imagePath = "data/splash.png";
-
 		public Splash(float x, float y)
 		{
 			this(x, y, 5, 5);
@@ -18,18 +15,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 		
 		public Splash(float x, float y, float w, float h)
 		{
-			setWidth(w);
-			setHeight(h);
+			super(x, y, w, h);
 			
-			setX(x - w / 2);
-			setY(y - h / 2);
-
-			setBounds(getX(), getY(), getWidth(), getHeight());
-			
-			setOrigin(getWidth() / 2, getHeight() / 2);  
-
-			region = GDXtest.getTexture("splash");
-			region.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			setTexture("splash");
 		}
 
 		@Override

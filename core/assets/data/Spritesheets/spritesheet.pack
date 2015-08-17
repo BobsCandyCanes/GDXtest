@@ -5,50 +5,57 @@ filter: Nearest,Nearest
 repeat: none
 ship3
   rotate: false
-  xy: 1, 288
-  size: 198, 734
-  orig: 198, 734
+  xy: 1, 94
+  size: 198, 735
+  orig: 198, 735
+  offset: 0, 0
+  index: -1
+explosion
+  rotate: false
+  xy: 201, 424
+  size: 405, 405
+  orig: 405, 405
+  offset: 0, 0
+  index: -1
+ship2
+  rotate: false
+  xy: 608, 400
+  size: 101, 429
+  orig: 101, 429
   offset: 0, 0
   index: -1
 splash
   rotate: false
-  xy: 201, 793
+  xy: 201, 193
   size: 229, 229
   orig: 229, 229
   offset: 0, 0
   index: -1
 turret2
   rotate: false
-  xy: 201, 552
+  xy: 711, 590
   size: 210, 239
   orig: 210, 239
   offset: 0, 0
   index: -1
-ship2
-  rotate: false
-  xy: 1, 1
-  size: 67, 285
-  orig: 67, 285
-  offset: 0, 0
-  index: -1
-turret1
-  rotate: false
-  xy: 201, 385
-  size: 104, 165
-  orig: 104, 165
-  offset: 0, 0
-  index: -1
 ship1
   rotate: false
-  xy: 432, 816
-  size: 61, 206
-  orig: 61, 206
+  xy: 923, 520
+  size: 93, 309
+  orig: 93, 309
   offset: 0, 0
   index: -1
 projectile
   rotate: false
-  xy: 70, 195
+  xy: 1, 1
   size: 56, 91
   orig: 56, 91
+  offset: 0, 0
+  index: -1
+turret1
+  rotate: false
+  xy: 201, 108
+  size: 52, 83
+  orig: 52, 83
   offset: 0, 0
   index: -1
